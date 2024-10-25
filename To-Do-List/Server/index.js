@@ -1,7 +1,7 @@
 const express=require("express")
 const fs=require("fs")
 const app=express()
-var cors = require('cors')
+var cors = require('cors')  
 app.use(express.json())
 app.use(cors());
 
