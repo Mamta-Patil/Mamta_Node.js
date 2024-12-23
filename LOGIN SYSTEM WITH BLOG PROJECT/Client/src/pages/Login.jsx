@@ -10,6 +10,18 @@ const navigate = useNavigate();
     e.preventDefault()
   const userData={email,password}
   console.log(userData)
+axios.post(`${import.meta.env.VITE_BASEURL}user/signin`,userData,{withCredentials:true})
+.then((res)=>{
+  console.log(res)
+  toast.success(res.data.message)
+  alert(res.data.message)
+  localStorage.setItem("userData",JSON.stringify(res.data.userData))
+})
+.catch((err)=>{
+  console.log(err)
+  alert(err.message)
+})
+
   };
   return (
     <div
@@ -68,6 +80,7 @@ const navigate = useNavigate();
             <button type="submit" className="btn btn-primary w-100">
               Sign In
             </button>
+
           </form>
 
           {/* Sign-Up Link */}
@@ -77,6 +90,7 @@ const navigate = useNavigate();
               Sign Up
             </Link>
           </div>
+
         </div>
       </div>
     </div>

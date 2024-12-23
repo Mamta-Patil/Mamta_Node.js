@@ -2,8 +2,6 @@
 const notesModel = require("../models/notes.model")
 const userModel = require("../models/user.model")
 
-
-
 // create notes
 const createNotes = async (req, res) => {
     const { title, body } = req.body
@@ -40,7 +38,6 @@ const deleteNotes = async (req, res) => {
 }
 
 // get notes by user
-
 const GetAllNotesByUser = async (req, res) => {
     const { userId } = req.params
     // console.log("GetAllNotesByUser: " ,userId)
@@ -78,4 +75,18 @@ const GetSingleNoteByUser = async (req, res) => {
 
 }
 
-module.exports = { createNotes, deleteNotes, GetAllNotesByUser, GetSingleNoteByUser }
+// update notes
+const updateNote = async (req, res) => {
+    const { notesId } = req.params
+
+    // for usrerdata
+    // console.log("update note's id", req.user)
+
+    // notes information
+    const notesData = await notesModel.findById(notesId)
+
+    console.log("notesdata which i want to update....   ", notesData)
+
+}
+
+module.exports = { createNotes, deleteNotes, GetAllNotesByUser, GetSingleNoteByUser, updateNote }
