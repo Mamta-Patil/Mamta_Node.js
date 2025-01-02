@@ -4,26 +4,30 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 export default function SignUp() {
-  const [name, setname] = useState("");
+  const [username, setusername] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
+  const [role, setrole] = useState("");
+
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
+
     e.preventDefault();
+    // 
+    const userData = { username, email, password, role }
+
     //logic
-    const  userData={name,email,password}
-    axios.post(`${import.meta.env.VITE_BASEURL}user/signup`,userData)
-    .then((res)=>{
-      console.log(res)
-      // toast.success("signup successfully")
-      alert("signup successfully")
-      navigate("/sign-in")
-    })
-    .catch((err)=>{
-      alert(err.response.data.message)
-      // toast.error(err.response.data.message)
-    })  
+    axios.post(`${import.meta.env.VITE_BASEURL}user/signup`, userData)
+      .then((res) => {
+        console.log(res)
+        alert("signup successfully")
+        navigate("/sign-in")
+      })
+      .catch((err) => {
+        console.log(err)
+        alert(err)
+      })
   };
 
   return (
@@ -36,14 +40,16 @@ export default function SignUp() {
                 <div className="row justify-content-center">
                   <div className="col-lg-6">
                     <h2 className="text-center fw-bold mb-3">Sign Up</h2>
-                    <form onSubmit={handleSubmit}>
-                      <div className="mb-3">
+
+                    <form onSubmit={handleSubmit} >
+
+                      <div className="mb-3 mt-3">
                         <input
                           type="text"
                           className="form-control"
                           placeholder="Your Name"
-                          value={name}
-                          onChange={(e) => setname(e.target.value)}
+                          value={username}
+                          onChange={(e) => setusername(e.target.value)}
                           required
                         />
                       </div>
@@ -70,6 +76,14 @@ export default function SignUp() {
                         />
                       </div>
 
+                      <div className="mb-3">
+                        <label className="form-label">Role</label>
+                        <select className="form-select" name="role" value={role} onChange={(e) => setrole(e.target.value)} required >
+                          <option value="User">User</option>
+                          <option value="Admin">Admin</option>
+                        </select>
+                      </div>
+
                       <div className="d-grid">
                         <button type="submit" className="btn btn-primary">
                           Register
@@ -83,6 +97,7 @@ export default function SignUp() {
                         </p>
                       </div>
                     </form>
+
                   </div>
                   <div className="col-lg-5 d-flex align-items-center">
                     <img

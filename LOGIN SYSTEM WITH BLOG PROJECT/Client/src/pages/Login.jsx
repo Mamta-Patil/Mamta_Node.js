@@ -1,26 +1,30 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 export default function SignIn() {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
-const navigate = useNavigate();
+// const { login } = useContext(AuthContext);
+
   const handlesubmit = (e) => {
     e.preventDefault()
-  const userData={email,password}
-  console.log(userData)
-axios.post(`${import.meta.env.VITE_BASEURL}user/signin`,userData,{withCredentials:true})
-.then((res)=>{
-  console.log(res)
-  toast.success(res.data.message)
-  alert(res.data.message)
-  localStorage.setItem("userData",JSON.stringify(res.data.userData))
-})
-.catch((err)=>{
-  console.log(err)
-  alert(err.message)
-})
+    const userData = { email, password }
+    console.log(userData)
+    // login(userData)
+
+    axios.post(`${import.meta.env.VITE_BASEURL}user/signin`, userData, { withCredentials: true })
+      .then((res) => {
+        console.log(res)
+        toast.success(res.data.message)
+        // navigate("/")
+        alert(res.data.message)
+        localStorage.setItem("userData",JSON.stringify(res.data.userData))
+      })
+      .catch((err) => {
+        console.log(err)
+        alert(err.message)
+      })
 
   };
   return (

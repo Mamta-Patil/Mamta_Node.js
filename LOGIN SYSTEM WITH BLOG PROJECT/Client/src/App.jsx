@@ -6,7 +6,6 @@ import Footer from './components/Footer'
 const App = () => {
   return (
     <div>
-      {/* <h4>Hello World</h4> */}
       <Navbar />
       <Allroutes />
       <Footer />

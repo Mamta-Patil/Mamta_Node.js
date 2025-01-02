@@ -1,17 +1,15 @@
 import { Link } from "react-router-dom";
-import { AiOutlineSearch } from "react-icons/ai";
-
 export default function Navbar() {
-  const {_id,name}= JSON.parse(localStorage.getItem("userData"))
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
       <div className="container">
+
         <Link to="/" className="navbar-brand font-weight-bold">
           Home
         </Link>
 
-        <Link to="/getallnotes" className="navbar-brand font-weight-bold">
+        <Link to="/getallblogs" className="navbar-brand font-weight-bold">
           Notes
         </Link>
 
@@ -29,16 +27,23 @@ export default function Navbar() {
 
         <div className="collapse navbar-collapse" id="navbarNav">
           <div className="d-flex ms-auto">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search..."
-              aria-label="Search"
-            />
-           
+
+
+            {/* 
+            <Link>
+              {name ? name : ""}
+            </Link> */}
+
           </div>
 
           <ul className="navbar-nav ms-auto align-items-center gap-2">
+
+            <button>
+              <Link to={"/create"}>
+                create note
+              </Link>
+            </button>
+
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
@@ -81,13 +86,26 @@ export default function Navbar() {
             </li>
 
             <li>
-              <Link>
-              {name?name:""}
-              </Link>
             </li>
+
           </ul>
         </div>
+
+        {/* {
+          role === "admin" ? (
+            <div className="admin-acees">
+              <button onClick={getAllNotes}>
+                <Link to={"/getallnotes"}>
+                Get All Notes
+                </Link>
+                </button>
+              <button onClick={handlleDelete}>Delete All Notes</button>
+            </div>
+          ) : ("")
+        } */}
+
       </div>
     </nav>
   );
+
 }
