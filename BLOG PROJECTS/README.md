@@ -5,7 +5,7 @@
    -> cd Server
    -> npm run server  
 
-3> For Open CLient  Folder
+3> For Open Client  Folder
    -> cd Client
    -> npm run dev     
 
