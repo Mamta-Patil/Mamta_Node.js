@@ -14,9 +14,9 @@ blogRouter.delete("/delate/:blogId",deleteBlogs)
 blogRouter.get("/getallblog",GetAllBlogs)
 
 // single notes by user
-blogRouter.get("/getsinglenote/:blogId",GetSingleBlog)
+blogRouter.get("/getsingleblog/:blogId",GetSingleBlog)
 
 // update note
-blogRouter.patch("/updatenote/:blogId",updatBlog)
+blogRouter.patch("/updateblog/:blogId",updatBlog)
 
 module.exports=blogRouter

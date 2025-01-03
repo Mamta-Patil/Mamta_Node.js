@@ -1,10 +1,5 @@
 import { Link } from "react-router-dom";
-import { AiOutlineSearch } from "react-icons/ai";
-import axios from "axios";
-import { useState } from "react";
-
 export default function Navbar() {
-  const [notesdata, setNotesdata] = useState([])
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
@@ -15,7 +10,7 @@ export default function Navbar() {
         </Link>
 
         <Link to="/getallblogs" className="navbar-brand font-weight-bold">
-          Notes
+          Blogs
         </Link>
 
         <button
@@ -33,17 +28,6 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <div className="d-flex ms-auto">
 
-            {/* <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search..."
-              aria-label="Search"
-            /> */}
-            
-{/* 
-            <Link>
-              {name ? name : ""}
-            </Link> */}
 
           </div>
 
@@ -51,7 +35,7 @@ export default function Navbar() {
 
             <button>
               <Link to={"/create"}>
-                create note
+                create Blog
               </Link>
             </button>
 
@@ -89,31 +73,12 @@ export default function Navbar() {
                   <button className="dropdown-item">Sign out</button>
                 </li> </ul>
             </li>
-{/* 
-            <li className="nav-item">
-              <Link to="/sign-in" className="btn btn-outline-primary">
-                Sign In
-              </Link>
-            </li> */}
 
             <li>
             </li>
 
           </ul>
         </div>
-
-        {/* {
-          role === "admin" ? (
-            <div className="admin-acees">
-              <button onClick={getAllNotes}>
-                <Link to={"/getallnotes"}>
-                Get All Notes
-                </Link>
-                </button>
-              <button onClick={handlleDelete}>Delete All Notes</button>
-            </div>
-          ) : ("")
-        } */}
 
       </div>
     </nav>

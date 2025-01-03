@@ -6,8 +6,8 @@ const CreateNotes = () => {
     Title: '',
     Author: '',
     Tag: '',
-    Content:'',
-    PublishedDate:''
+    Content: '',
+    PublishedDate: ''
   });
 
   const handleChange = (e) => {
@@ -22,20 +22,17 @@ const CreateNotes = () => {
     e.preventDefault();
     console.log('Form Data Submitted:', blogData);
 
-    axios.post(`${import.meta.env.VITE_BASEURL}blog/create`)
-.then((res)=>{
-  console.log(res)
-//   toast.success(res.data.message)
-  alert(res.data.message)
-})
-
-    // You can handle form submission here, such as sending data to an API
-    // setFormData({ Title: '', Author: '', Content: '', Tag:'', PublishedDate:''}); // Reset form after submission
+    axios.post(`${import.meta.env.VITE_BASEURL}blog/create`, blogData)
+      .then((res) => {
+        console.log(res)
+        alert(res.data.message)
+      })
+    setFormData({ Title: '', Author: '', Content: '', Tag: '', PublishedDate: '' }); // Reset form after submission
   };
 
   return (
     <div style={{ maxWidth: '400px', margin: '0 auto' }}>
-      <h2>Submit Your Data</h2>
+      <h4>Create Your Blog</h4>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: '10px' }}>
           <label htmlFor="Title" style={{ display: 'block', marginBottom: '5px' }}>Title</label>
@@ -75,14 +72,15 @@ const CreateNotes = () => {
         </div>
         <div style={{ marginBottom: '10px' }}>
           <label htmlFor="Tag" style={{ display: 'block', marginBottom: '5px' }}>Tag</label>
-          <textarea
+          <input
+            type="Tag"
             id="Tag"
             name="Tag"
             value={blogData.Tag}
             onChange={handleChange}
             style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
             required
-          ></textarea>
+          />
         </div>
         <div style={{ marginBottom: '10px' }}>
           <label htmlFor="img" style={{ display: 'block', marginBottom: '5px' }}>PublishedDate</label>
@@ -96,7 +94,7 @@ const CreateNotes = () => {
             required
           />
         </div>
-        <button type="submit" style={{ padding: '10px 20px', cursor: 'pointer' }}>Submit</button>
+        <button type="submit" style={{ padding: '10px 20px', cursor: 'pointer', marginBottom:'20px' }}>Submit</button>
       </form>
     </div>
   );

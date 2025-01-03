@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const BlogList = () => {
 
@@ -9,7 +10,7 @@ const BlogList = () => {
     axios.get(`${import.meta.env.VITE_BASEURL}blog/getallblog`)
       .then((res) => {
         console.log(res.data)
-        setNotesdata(res.data.allUserNotes)
+        setNotesdata(res.data.allblog)
       })
       .catch((err) => {
         console.log(err)
@@ -36,19 +37,28 @@ const BlogList = () => {
 
   return (
     <div>
-      <h2>Blogs result:</h2>
-      <div className='d-flex flex-wrap gap-4'>
+      <h2>Blogs : </h2>
+      <div className='blogs'>
         {
           notesdata.length > 0 ? (notesdata.map((el) =>
           (
-            <div key={el.id}>
-              <p> {el._id} </p>
-              <h4> {el.Title} </h4>
+            <div key={el.id} className='blog' >
+              {/* <p> {el._id} </p> */}
+              <h4> 
+                <Link to={`/singleblog/${el._id}`}>
+                {el.Title} 
+                </Link>
+                </h4>
               <h6> {el.Auther} </h6>
               <p> {el.Content} </p>
-              <h2> {el.PublishedDate} </h2>
-              <button>Edit</button>
-              <button onClick={() => handlleDelete(el._id)}>Delete</button>
+              <p> {el.Tag} </p>
+              <p> {el.PublishedDate} </p>
+              <button>
+                <Link to={`/edit/${el._id}`} >
+                Edit
+                </Link>
+                </button>
+              <button className='ms-5' onClick={() => handlleDelete(el._id)}>Delete</button>
             </div>
           )
           )) : ("")
@@ -59,8 +69,3 @@ const BlogList = () => {
 }
 
 export default BlogList
-
-// blog
-// 404 = for not found
-// 500 =  for error
-// 200 = for success message
