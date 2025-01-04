@@ -1,7 +1,5 @@
-
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
-const cookieParser = require("cookie-parser");
 
 dotenv.config();
 const isAuth = (req, res, next) => {
@@ -16,7 +14,7 @@ const isAuth = (req, res, next) => {
            req.user = decoded.userId;
            next();
       });
-
+   
 };
 
 module.exports = isAuth;

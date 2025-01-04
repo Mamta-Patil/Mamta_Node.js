@@ -1,5 +1,37 @@
 import { Link } from "react-router-dom";
+import { AiOutlineSearch } from "react-icons/ai";
+import axios from "axios";
+import { useState } from "react";
+
 export default function Navbar() {
+
+  const {name, role } = JSON.parse(localStorage.getItem("userData"))
+
+  const [notesdata, setNotesdata] = useState([])
+
+  // get all notes by admin
+  const getAllNotes = () => {
+    axios.get(`${import.meta.env.VITE_BASEURL}notes/getallnotes`, { withCredentials: true })
+      .then((res) => {
+        console.log(res)
+        setNotesdata(res.data.allUserNotes)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  // delete all notes by admin
+  const handlleDelete = (postId) => {
+    console.log(postId)
+    axios.delete(`${import.meta.env.VITE_BASEURL}notes/deletallnotes`, { withCredentials: true })
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
@@ -9,40 +41,18 @@ export default function Navbar() {
           Home
         </Link>
 
-        <Link to="/getallblogs" className="navbar-brand font-weight-bold">
+        <Link to="/getallnote" className="navbar-brand font-weight-bold">
           Notes
         </Link>
 
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
         <div className="collapse navbar-collapse" id="navbarNav">
-          <div className="d-flex ms-auto">
-
-
-            {/* 
+          <div className="d-flex ms-5">
             <Link>
               {name ? name : ""}
-            </Link> */}
-
+            </Link>
           </div>
 
-          <ul className="navbar-nav ms-auto align-items-center gap-2">
-
-            <button>
-              <Link to={"/create"}>
-                create note
-              </Link>
-            </button>
+          <ul className="navbar-nav align-items-center gap-2 ms-5">
 
             <li className="nav-item dropdown">
               <a
@@ -62,7 +72,7 @@ export default function Navbar() {
                 />
               </a>
               <ul
-                className="dropdown-menu dropdown-menu-end"
+                className="dropdown-menu dropdown-menu-end ms-5"
                 aria-labelledby="userDropdown"
               >
                 <li className="dropdown-header">@username</li>
@@ -79,30 +89,35 @@ export default function Navbar() {
                 </li> </ul>
             </li>
 
-            <li className="nav-item">
-              <Link to="/sign-in" className="btn btn-outline-primary">
+            <li className="nav-item ms-5">
+              <Link to="/sign-in" className="btn btn-outline-primary ms-5 ps-3">
                 Sign In
               </Link>
             </li>
 
-            <li>
+            <li className="ms-5">
+            <button className="ms-5">
+              <Link to={"/create"} className="text-light btn ms-3 me-3" >
+                Create note
+              </Link>
+            </button>
             </li>
 
           </ul>
         </div>
-
-        {/* {
+       
+        {
           role === "admin" ? (
             <div className="admin-acees">
               <button onClick={getAllNotes}>
-                <Link to={"/getallnotes"}>
+                <Link to={"/getallnotes"} className="text-light btn ms-2" >
                 Get All Notes
                 </Link>
                 </button>
-              <button onClick={handlleDelete}>Delete All Notes</button>
+              <button onClick={handlleDelete} className="ms-4 deletebtn" >Delete All Notes</button>
             </div>
           ) : ("")
-        } */}
+        }
 
       </div>
     </nav>

@@ -1,51 +1,25 @@
-footer
-{
-    position: absolute;
-    bottom: 0%;
+button {
+    border: 2px solid black;
+    background-color: cadetblue;
+    color: #fff;
 }
 
-.blogs
-{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 30px;
-    margin: 5px 20px;
-    text-align: center;
-    color: white;
-}
-
-.blog
-{
-    background-color:rgb(56, 56, 82);
-    border: 2px solid #fff;
-    border-radius: 10px;
-    padding: 50px 50px;
-}
-
-button 
-{
-    padding: 10px 20px;
-    background-color:#fff ;
-    border: 2px solid #fff;
-    border-radius: 20px;
-}
-
-button a
-{
+a {
+    color: #fff;
     text-decoration: none;
 }
 
-/* button a
-{
-    padding: 10px 20px;
-    background-color:#fff ;
-    border: 2px solid black;
-    border-radius: 20px;
-} */
+.deletebtn {
+    padding: 8px 15px;
+}
 
+footer {
+    width: 100%;
+    position: sticky;
+    bottom: 0%;
+}
 
-form
-{
+form {
     background-color: rgb(56, 56, 82);
     color: #fff;
     padding: 0px 40px;
@@ -53,7 +27,50 @@ form
     border-radius: 20px;
 }
 
-input
-{
+input {
     border-radius: 10px;
+}
+
+.notes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    width: 80%;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.card img {
+    width: 100%;
+}
+
+.notesDetails {
+    width: 60%;
+    margin: auto;
+    text-align: center;
+    background-color: cadetblue;
+    color: #fff;
+    padding: 50px 0px;
+}
+
+.notesDetails img {
+    height: 200px;
+    width: 200px;
+}
+
+.notesDetails h4 {
+    padding: 10px 20px;
+}
+
+.notesDetails h6 {
+    padding-top: 20px;
+}
+
+footer
+{
+    position: sticky;
+    bottom: 0%;
 }
