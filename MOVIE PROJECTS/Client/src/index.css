@@ -1,16 +1,12 @@
 button {
     border: 2px solid black;
-    background-color: cadetblue;
-    color: #fff;
+    background-color: #fff;
+    color:black;
 }
 
 a {
     color: #fff;
     text-decoration: none;
-}
-
-.deletebtn {
-    padding: 8px 15px;
 }
 
 footer {
@@ -20,25 +16,36 @@ footer {
 }
 
 form {
-    background-color: rgb(56, 56, 82);
-    color: #fff;
-    padding: 0px 40px;
+    color: black;
     border: 2px solid #fff;
     border-radius: 20px;
 }
 
-input {
+.form
+{
+    margin: 0% 25%;
+    padding: 5% 9%;
+    background-color: cadetblue;
+}
+
+input
+{
+    width: 80%;
+}
+
+.form input,.form textarea {
+    height: 35px;
+    width: 400px;
     border-radius: 10px;
 }
 
-.notes {
+.movie{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-}
+} 
 
 .card {
-    /* width: 80%; */
     text-align: center;
     padding-bottom: 10px;
 }
@@ -47,30 +54,35 @@ input {
     width: 100%;
 }
 
-.notesDetails {
-    width: 60%;
-    margin: auto;
-    text-align: center;
-    background-color: cadetblue;
-    color: #fff;
-    padding: 50px 0px;
+.movies
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-.notesDetails img {
-    height: 200px;
-    width: 200px;
-}
-
-.notesDetails h4 {
-    padding: 10px 20px;
-}
-
-.notesDetails h6 {
-    padding-top: 20px;
+.movies  div
+{
+    width: 33%;
 }
 
 footer
 {
-    position: sticky;
+    position: absolute;
     bottom: 0%;
+}
+
+.image
+{
+    height: 80vh;
+    width: 100%;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-image: url("https://images.pexels.com/photos/33129/popcorn-movie-party-entertainment.jpg");
+}
+
+.navbar a
+{
+    color: black;
 }

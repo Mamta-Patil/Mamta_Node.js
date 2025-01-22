@@ -22,10 +22,10 @@ moviesRouter.get("/getallmovies/:userId",authMiddleware,GetAllMovieByUser)
 moviesRouter.get("/getsinglemovie/:moviesId",authMiddleware,GetSingleMovieByUser)
 
 // update note
-moviesRouter.patch("/updatemoviemoviesId",authMiddleware,updateMovie)
+moviesRouter.patch("/update/:moviesId",authMiddleware,updateMovie)
 
 // get all notes by admin
-moviesRouter.get("/getallsmovies",GetAllMoviesByAdmin)
+moviesRouter.get("/getallmovies",GetAllMoviesByAdmin)
 
 // get deleted by admin
 moviesRouter.delete("/deletallmovies",DelateAllMoviesByAdmin)

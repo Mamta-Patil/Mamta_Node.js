@@ -9,7 +9,7 @@ const MoviesByAdmin = () => {
   const getNotes = () => {
 
     console.log(notesdata)
-    axios.get(`${import.meta.env.VITE_BASEURL}notes/getallnotes`, { withCredentials: true })
+    axios.get(`${import.meta.env.VITE_BASEURL}movies/getallmovies`, { withCredentials: true })
       .then((res) => {
         console.log(res)
         const notes = res.data?.notes || [];
@@ -26,14 +26,18 @@ const MoviesByAdmin = () => {
 
   return (
     <div>
-      <h2>Notes collection:</h2>
-      <div className='notes mt-5 mb-5 text-center' >
+      <h4 className='p-2'>Movies Collection:</h4>
+      <div className='movies' >
         {
           notesdata.map((el) => {
-            return <div key={el.id} className='' style={{backgroundColor:"cadetblue"}}> 
-                        <h5>{el.title}</h5>
-                        <img src={el.noteSImage} alt="" width={"200px"} height={"200px"} />
-                        <h6 className='pt-3 mb-5'>{el.body} </h6>
+            return <div key={el.id} className='' style={{border:"1px solid cadetblue",textAlign:"center"}}> 
+            <div>
+                        <h5>{el.Title}</h5>
+                        <h5>{el.Genre}</h5>
+                        <h5>{el.Director}</h5>
+                        <h5>{el.Description}</h5>
+                        <h5>{el.ReleaseYear}</h5>
+            </div>                       
               </div>
           })
         }

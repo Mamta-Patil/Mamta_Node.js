@@ -3,8 +3,6 @@ import React, { useState } from "react";
 
 // Create Movie Form Component
 const CreateMovieForm = () => {
-  const { _id } = JSON.parse(localStorage.getItem("userData")) || {};
-  console.log(_id);
 
   const [movie, setMovie] = useState({
     Title: "",
@@ -28,14 +26,6 @@ const CreateMovieForm = () => {
       .then((res) => {
         console.log(res);
         alert(res.data.message)
-        // Clear the form after successful submission
-        setMovie({
-          Title: "",
-          Genre: "",
-          Director: "",
-          Description: "",
-          ReleaseYear: "",
-        });
       })
       .catch((err) => {
         console.log(err);
@@ -44,9 +34,10 @@ const CreateMovieForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <div className="form">
       <h2>Create Movie</h2>
       <label>
-        Title:
+        Title: <br />
         <input
           type="text"
           name="Title"
@@ -57,7 +48,7 @@ const CreateMovieForm = () => {
       </label>
       <br />
       <label>
-        Genre:
+        Genre: <br />
         <input
           type="text"
           name="Genre"
@@ -68,7 +59,7 @@ const CreateMovieForm = () => {
       </label>
       <br />
       <label>
-        Director:
+        Director:     <br /> 
         <input
           type="text"
           name="Director"
@@ -79,7 +70,7 @@ const CreateMovieForm = () => {
       </label>
       <br />
       <label>
-        Description:
+        Description:   <br />
         <textarea
           name="Description"
           value={movie.Description}
@@ -89,7 +80,7 @@ const CreateMovieForm = () => {
       </label>
       <br />
       <label>
-        Release Year:
+        Release Year:  <br />
         <input
           type="number"
           name="ReleaseYear"
@@ -98,8 +89,9 @@ const CreateMovieForm = () => {
           required
         />
       </label>
-      <br />
+      <br /> <br />
       <button type="submit">Create</button>
+      </div>
     </form>
   );
 };

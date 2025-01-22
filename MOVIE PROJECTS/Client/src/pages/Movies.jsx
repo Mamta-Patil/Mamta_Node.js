@@ -10,6 +10,7 @@ const Movies = () => {
 
     console.log(notesdata)
     const userinfo = JSON.parse(localStorage.getItem("userData"))
+    console.log(userinfo)
     axios.get(`${import.meta.env.VITE_BASEURL}movies/getallmovies/${userinfo._id}`, { withCredentials: true })
       .then((res) => {
         console.log(res.data.allUserNotes)
@@ -26,8 +27,8 @@ const Movies = () => {
 
   return (
     <div>
-      <h3 className='mt-5'>Notes result:</h3>
-      <div className='notes mb-5'> 
+      <h3 className=''>Movie result:</h3>
+      <div className='movie mb-5'> 
         {notesdata.length > 0 ? (notesdata.map((el) => <PostCard key={el.id} title={el.Title} genre={el.Genre} director={el.Director}  discription={el.Description} postId={el._id } releaseYear={el.ReleaseYear}  />)) : (<h2>Notes not found:</h2>)}
       </div>
     </div>

@@ -4,7 +4,6 @@ import Homepage from "./pages/Homepage";
 import SignIn from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Movies from "./pages/Movies";
-import MoviesDetails from "./pages/MoviesDetails";
 import CreateMovie from "./pages/CreateMovie";
 import EditMovie from "./pages/EditMovie";
 import MoviesByAdmin from "./pages/MoviesByAdmin";
@@ -16,7 +15,6 @@ const Allroutes = () => {
       <Route path="/sign-in" element={<SignIn/>}></Route>
       <Route path="/sign-up" element={<SignUp />}></Route>
       <Route path="/getallnote" element={<Movies />}></Route>
-      <Route path="/getsinglenote/:notesId" element={<MoviesDetails />}></Route>
       <Route path="/create" element={<CreateMovie />}></Route>
       <Route path="/edit/:notesId" element={<EditMovie />}></Route>
       <Route path="/getallnotes" element={<MoviesByAdmin />}></Route>

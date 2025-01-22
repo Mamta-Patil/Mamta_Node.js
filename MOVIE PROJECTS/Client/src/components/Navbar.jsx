@@ -6,13 +6,12 @@ import { useState } from "react";
 export default function Navbar() {
 
   const {name, role } = JSON.parse(localStorage.getItem("userData"))
-console.log(name)
-console.log(role)
+
   const [notesdata, setNotesdata] = useState([])
 
   // get all notes by admin
   const getAllNotes = () => {
-    axios.get(`${import.meta.env.VITE_BASEURL}movies/getallsmovies`, { withCredentials: true })
+    axios.get(`${import.meta.env.VITE_BASEURL}movies/getallsmovies`)
       .then((res) => {
         console.log(res)
         setNotesdata(res.data.allUserNotes)
@@ -98,7 +97,7 @@ console.log(role)
 
             <li className="ms-5">
             <button className="ms-5">
-              <Link to={"/create"} className="text-light btn ms-3 me-3" >
+              <Link to={"/create"} className="text-dark btn ms-3 me-3 p-0" >
                 Create Movies
               </Link>
             </button>
@@ -111,15 +110,14 @@ console.log(role)
           role === "admin" ? (
             <div className="admin-acees">
               <button onClick={getAllNotes}>
-                <Link to={"/getallnotes"} className="text-light btn ms-2" >
-                Get All Notes
+                <Link to={"/getallnotes"} className="text-dark btn ms-2 p-0" >
+                Get All Movies
                 </Link>
                 </button>
-              <button onClick={handlleDelete} className="ms-4 deletebtn" >Delete All Notes</button>
+              <button onClick={handlleDelete} className="ms-4 deletebtn" >Delete All Movies</button>
             </div>
           ) : ("")
         }
-
       </div>
     </nav>
   );

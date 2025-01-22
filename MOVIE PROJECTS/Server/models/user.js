@@ -4,10 +4,6 @@ const userSchema=new mongoose.Schema({
     email:String,
     password:String,
     role:String
-    // role:{
-    //     type:String,
-    //     default:"user"
-    // }
 },{
     timestamps:true,
     versionKey:false

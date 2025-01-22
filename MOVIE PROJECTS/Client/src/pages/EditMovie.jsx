@@ -1,185 +1,115 @@
-// import axios from 'axios';
-// import React, { useState, useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
 
-// const EditMovie = (req,res) => {
+  import axios from "axios";
+  import { useEffect, useState } from "react";
+  import { useParams } from "react-router-dom";
+
+  // Edit Movie Form Component
+  const EditMovieForm = () => {
     
-//     const {notesId}=useParams()
-//     console.log(notesId)
+    const [movie, setMovie] = useState({
+      Title: "",
+      Genre: "",
+      Director: "",
+      Description: "",
+      ReleaseYear: "",
+  } );
+  
+    const {notesId}=useParams()
+      const getsingledata = () => {
+        axios.get(`${import.meta.env.VITE_BASEURL}movies/getsinglemovie/${notesId}`, { withCredentials: true })
+          .then((res) => {
+            console.log(res.data.notes)
+            setMovie(res.data.notes)
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
 
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setMovie({ ...movie, [name]: value });
+    };
 
-//     const [title,settitle]=useState("")
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      // onSubmit(movie);
 
-//     const [body,setbody]=useState("")
+      axios.patch(`http://localhost:8080/movies/update/${notesId}`,movie,{withCredentials:true})
+      .then((res)=>{
+        alert("data updated successfully")
+      })
+      .catch((err)=>{
+        alert(err)
+      })
+      
+    };
 
-//     const [notesImage,setnotesImage]=useState(null)
+    useEffect(() => {
+      getsingledata();
+    }, []); 
 
-//     const getsingledata = () => {
-//       axios.get(`${import.meta.env.VITE_BASEURL}notes/getsinglenote/${notesId}`, { withCredentials: true })
-//         .then((res) => {
-//           // setformData(res.data.notes); 
-//           console.log(res.data.notes)
-//           settitle(res.data.notes.title)
-//           setbody(res.data.notes.body)
-//         })
-//         .catch((err) => {
-//           console.log(err);
-//         });
-//     };
-
-//     useEffect(() => {
-//       getsingledata();
-//     }, []); 
-
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-   
-//     const formData={title,body,file:notesImage}
-//     console.log(formData)
-   
-//     axios.patch(`${import.meta.env.VITE_BASEURL}notes/updatenote/${notesId}`,formData, {
-//       withCredentials:true,
-//       headers:{
-//            "Content-Type":"multipart/form-data"
-//       }
-//     })
-//     .then((res) => {
-//       console.log(res)
-//       alert("notes updated sucessfully")
-//     })
-//     .catch((err) => {
-//       console.log(err)
-     
-//     })
-
-//   };
-
-
-//   return (
-//     <div style={{ maxWidth: '400px', margin: '0 auto' }}>
-//       <h2>Edit Your Notes</h2>
-//       <form onSubmit={handleSubmit} className='mt-5 mb-5 pt-5 pb-5'>
-//         <div style={{ marginBottom: '10px' }}>
-//           <label htmlFor="title" style={{ display: 'block', marginBottom: '5px' }}>Title</label>
-//           <input
-//             type="text"
-//             id="title"
-//             name="title"
-//             value={title}
-//             onChange={(e)=>settitle(e.target.value)}
-//             style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
-//             required
-//           />
-//         </div>
-//         <div style={{ marginBottom: '10px' }}>
-//           <label htmlFor="body" style={{ display: 'block', marginBottom: '5px' }}>Body</label>
-//             <input
-//             type="text"
-//             id="body"
-//             name="body"
-//             value={body}
-//             onChange={(e)=>setbody(e.target.value)}
-//             style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
-//             required
-//           />
-//         </div>
-//         <div style={{ marginBottom: '10px' }}>
-//           <label htmlFor="img" style={{ display: 'block', marginBottom: '5px' }}>Image URL</label>
-//           <input
-//             type="file"
-//             id="notesImage"
-//             name="notesImage"
-//             onChange={(e)=>setnotesImage(e.target.files[0])}
-//             style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
-//             required
-//           />
-//         </div>
-//         <button type="submit" style={{ padding: '10px 20px', cursor: 'pointer' }}>Save Changes</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default EditMovie;
-
-
-
-// Edit Movie Form Component
-const EditMovieForm = ({ movieData, onSubmit }) => {
-  const [movie, setMovie] = useState(movieData);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setMovie({ ...movie, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit(movie);
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
+    return (
+      <form onSubmit={handleSubmit} className="form">
       <h2>Edit Movie</h2>
       <label>
-        Title:
+        Title:  <br />
         <input
           type="text"
-          name="title"
-          value={movie.title}
+          name="Title" // Match the state property
+          value={movie.Title}
           onChange={handleChange}
           required
         />
       </label>
       <br />
       <label>
-        Genre:
+        Genre: <br />
         <input
           type="text"
-          name="genre"
-          value={movie.genre}
+          name="Genre" // Match the state property
+          value={movie.Genre}
           onChange={handleChange}
           required
         />
       </label>
       <br />
       <label>
-        Director:
+        Director:   <br />
         <input
           type="text"
-          name="director"
-          value={movie.director}
+          name="Director" // Match the state property
+          value={movie.Director}
           onChange={handleChange}
           required
         />
       </label>
       <br />
       <label>
-        Description:
+        Description:     <br />
         <textarea
-          name="description"
-          value={movie.description}
+          name="Description" // Match the state property
+          value={movie.Description}
           onChange={handleChange}
           required
         />
       </label>
       <br />
       <label>
-        Release Year:
+        Release Year:             <br />
         <input
           type="number"
-          name="releaseYear"
-          value={movie.releaseYear}
+          name="ReleaseYear" // Match the state property
+          value={movie.ReleaseYear}
           onChange={handleChange}
           required
         />
       </label>
+      <br /> <br />
       <button type="submit">Save Changes</button>
     </form>
-  );
-};
+    
+    );
+  };
 
-// export { CreateMovieForm, EditMovieForm };
-
-export default EditMovieForm
+  export default EditMovieForm

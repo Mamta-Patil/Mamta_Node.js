@@ -1,6 +1,5 @@
 
 const movieModel = require("../models/movie")
-// const userModel = require("../models/user.model")
 
 // create notes
 const createMovie = async (req, res) => {
@@ -21,12 +20,9 @@ const createMovie = async (req, res) => {
 // delate note by user
 const deleteMovie = async (req, res) => {
     console.log("delete parameter", req.params)
-    const { notesId } = req.params
-    console.log(notesId)
-    console.log("req.user._id:   ", req.user._id)
-    const isExistNotes = await movieModel.findById(notesId)
-    // console.log("isExistNotes:", isExistNotes)
-    // console.log("isExistNotesId:    ", isExistNotes.userId)
+    const { moviesId} = req.params
+    const isExistNotes = await movieModel.findById(moviesId)
+    console.log("isExistNotes:", isExistNotes)
     if (!isExistNotes) {
         res.status(400).json({ message: "notes not found" })
     }
@@ -34,7 +30,7 @@ const deleteMovie = async (req, res) => {
         res.status(400).json({ message: "you can not delete this note" })
     }
 
-    await notesModel.findByIdAndDelete(notesId)
+    await movieModel.findByIdAndDelete(moviesId)
     res.status(200).json({ message: 'notes Delated successfully' })
 
 }
@@ -58,8 +54,8 @@ const GetAllMovieByUser = async (req, res) => {
 
 // get single note of user
 const GetSingleMovieByUser = async (req, res) => {
-    const { notesId } = req.params;
-    const isExistNotes = await movieModel.findById(notesId)
+    const { moviesId } = req.params;
+    const isExistNotes = await movieModel.findById(moviesId)
     try {
         if (!isExistNotes) {
             res.status(400).json({ message: "notes not found" })
@@ -78,12 +74,10 @@ const GetSingleMovieByUser = async (req, res) => {
 
 // update notes
 const updateMovie = async (req, res) => {
-    const { notesId } = req.params
-    console.log("line",req.file)
-
-
+    const { moviesId } = req.params
+    
     try {
-        const isExistNotes = await movieModel.findById(notesId)
+        const isExistNotes = await movieModel.findById(moviesId)
 
         if (!isExistNotes) {
             res.status(400).json({ message: "notes not found" })
@@ -93,7 +87,7 @@ const updateMovie = async (req, res) => {
         }
       
         else {
-            await movieModel.findByIdAndUpdate(notesId, {
+            await movieModel.findByIdAndUpdate(moviesId, {
                 ...req.body,
             })
             res.status(200).json({ message: "Note updated successfully" })
