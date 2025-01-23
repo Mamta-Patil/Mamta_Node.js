@@ -1,0 +1,160 @@
+
+   .products {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .products div {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .products img {
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .products h4 {
+    margin: 5px 0;
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  .products button {
+    margin: 5px;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .products button:hover {
+    background-color: #0056b3;
+  }
+  
+  .products button a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  .products button:last-child {
+    background-color: #dc3545;
+  }
+  
+  .products button:last-child:hover {
+    background-color: #a71d2a;
+  }
+  
+  .about {
+    padding: 20px;
+    margin: 15% auto;
+    max-width: 800px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  h4 {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    font-weight: 400;
+    text-align: justify;
+  }
+  
+  h4:first-letter {
+    font-size: 28px;
+    font-weight: 700;
+    color: #007bff;
+    margin-right: 5px;
+  }
+  
+  /* Edit.css */
+
+.edit-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  padding: 20px;
+}
+
+.edit-user-form
+{
+  margin-left: 20%;
+}
+
+h2 {
+  /* text-align: center; */
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+select {
+  width: 60%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+button[type="submit"] {
+  display: block;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 15px 20px;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+}
