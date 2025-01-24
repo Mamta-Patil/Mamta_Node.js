@@ -1,14 +1,8 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-// import { AuthContext } from "./AuthProvider";
 import axios from "axios";
-// import { AiOutlineSearch } from "react-icons/ai";
 
 export default function Navbar() {
-  // const {name}= JSON.parse(localStorage.getItem("userData"))
-  // const { user, logout } = useContext(AuthContext); 
-  // const {logout}= useContext(AuthContext)
-// console.log(name)
 
 // logout user
 const logoutUser=()=>{
@@ -97,13 +91,6 @@ const logoutUser=()=>{
                   Logout
                 </button>
               </li>
-
-
-            <li>
-              <Link>
-              {/* {name?name:""} */}
-              </Link>
-            </li>
           </ul>
         </div>
       </div>
